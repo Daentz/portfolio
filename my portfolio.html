@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dan Moses — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Bangers&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b14;--surface:#10101c;--card:#181828;--accent:#e94560;--accent2:#f5a623;--accent3:#7c3aed;--text:#eaeaea;--muted:#8888aa;--glow:0 0 20px rgba(233,69,96,.45);--line:rgba(255,255,255,.07)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent3),var(--accent2));z-index:300}
+#cursor-glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(124,58,237,.14),transparent 65%);transform:translate(-50%,-50%);left:-999px;top:-999px}
+nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(11,11,20,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(233,69,96,.15);display:flex;align-items:center;padding:0 2.5rem;height:58px;gap:.3rem}
+.brand{font-family:'Bangers',cursive;font-size:1.5rem;letter-spacing:3px;color:var(--accent);text-decoration:none;margin-right:auto}
+nav a.nl{text-decoration:none;color:var(--muted);font-weight:700;font-size:.78rem;padding:.35rem .8rem;border-radius:20px;letter-spacing:1px;text-transform:uppercase;transition:.2s}
+nav a.nl:hover,nav a.nl.on{color:#fff;background:var(--accent);box-shadow:var(--glow)}
+@media(max-width:760px){nav{padding:0 1rem}nav a.nl{display:none}}
+
+/* hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:3rem;padding:7rem 6rem 4rem;position:relative;overflow:hidden}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem;text-align:center}.hero-visual{display:none}.hero-btns,.chips{justify-content:center}}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(233,69,96,.12),transparent 55%),radial-gradient(ellipse at 10% 80%,rgba(124,58,237,.12),transparent 50%)}
+#particles{position:absolute;inset:0;width:100%;height:100%;opacity:.7}
+.hero-text,.hero-visual{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(233,69,96,.1);border:1px solid rgba(233,69,96,.35);color:var(--accent);font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:1.3rem}
+.dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.hero h1{font-family:'Bangers',cursive;font-size:clamp(3.4rem,8vw,6.6rem);line-height:.95;letter-spacing:3px}
+.hero h1 .r{color:var(--accent);text-shadow:0 0 30px rgba(233,69,96,.5)}
+.role{font-family:'Share Tech Mono',monospace;font-size:1.05rem;color:var(--accent3);margin:1rem 0;min-height:1.6rem}
+.role b{color:var(--text);font-weight:400}
+.caret{display:inline-block;width:8px;height:1.1em;background:var(--accent);vertical-align:middle;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-desc{color:var(--muted);line-height:1.75;max-width:500px;margin-bottom:1.6rem}
+.hero-desc strong{color:var(--text)}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.btn{background:var(--accent);color:#fff;text-decoration:none;padding:.8rem 2rem;border-radius:30px;font-weight:900;font-size:.9rem;border:none;cursor:pointer;transition:.2s;box-shadow:var(--glow);display:inline-flex;align-items:center;gap:.4rem;font-family:inherit}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 32px rgba(233,69,96,.7)}
+.btn.ghost{background:transparent;box-shadow:none;border:2px solid rgba(255,255,255,.15);color:var(--text)}
+.btn.ghost:hover{border-color:var(--accent3);color:var(--accent3)}
+.chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.chip{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--muted);border:1px solid var(--line);padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.03)}
+.avatar-wrap{position:relative;width:290px;height:290px;margin:auto}
+.avatar-frame{width:100%;height:100%;border-radius:50%;padding:4px;background:conic-gradient(from 0deg,var(--accent),var(--accent3),var(--accent2),var(--accent));animation:spin 8s linear infinite;box-shadow:var(--glow),0 0 40px rgba(124,58,237,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.avatar-inner{position:absolute;inset:5px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:4rem}
+.avatar-inner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fb{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.55rem .95rem;font-size:.78rem;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.4);animation:fy 4s ease-in-out infinite}
+.fb.b1{top:6%;right:-40px}.fb.b2{bottom:12%;left:-50px;animation-delay:2s}.fb.b3{top:52%;right:-60px;animation-delay:1s}
+@keyframes fy{50%{transform:translateY(-10px)}}
+
+/* sections */
+.sec{padding:5rem 6rem;max-width:1200px;margin:0 auto;position:relative;z-index:2}
+@media(max-width:860px){.sec{padding:4rem 1.5rem}}
+.label{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:.4rem}
+.sec h2{font-family:'Bangers',cursive;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:2px;color:#fff;margin-bottom:.6rem}
+.sec h2 span{color:var(--accent)}
+.divider{width:50px;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;margin-bottom:2.2rem}
+.alt{background:var(--surface)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:none}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1.3fr;gap:3rem;align-items:center}
+@media(max-width:860px){.about{grid-template-columns:1fr}}
+.about p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:.95rem}.about strong{color:var(--text)}
+.stats{display:flex;gap:2rem;margin-top:1.4rem;flex-wrap:wrap}
+.stat b{font-family:'Bangers',cursive;font-size:2.2rem;color:var(--accent);display:block;letter-spacing:1px}
+.stat span{font-size:.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.slides{position:relative;width:100%;max-width:340px;aspect-ratio:3/4;margin:0 auto;border-radius:18px;overflow:hidden;background:var(--card);border:1px solid rgba(233,69,96,.3);box-shadow:var(--glow)}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0}
+.slide.active{opacity:1;animation:gi .6s steps(2,end)}
+.slide.leaving{opacity:1;z-index:3;animation:go .35s steps(3,end) forwards}
+@keyframes gi{0%{opacity:0;clip-path:inset(0 0 100% 0);filter:brightness(2) hue-rotate(0)}30%{clip-path:inset(20% 0 30% 0);transform:translateX(6px);filter:brightness(.4) hue-rotate(-30deg)}60%{clip-path:inset(0);transform:translateX(-3px);filter:brightness(2)}100%{opacity:1;clip-path:inset(0);transform:none;filter:none}}
+@keyframes go{30%{transform:translateX(10px);filter:brightness(2) hue-rotate(60deg)}60%{transform:translateX(-12px);filter:brightness(.3)}100%{opacity:0;filter:brightness(3)}}
+.scan{position:absolute;inset:0;z-index:4;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0 2px,rgba(0,0,0,.14) 3px,transparent 4px)}
+.sdots{position:absolute;bottom:12px;left:0;right:0;z-index:6;display:flex;justify-content:center;gap:8px}
+.sd{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);border:1px solid rgba(233,69,96,.6);transition:.3s}
+.sd.active{background:var(--accent);transform:scale(1.3);box-shadow:0 0 8px var(--accent)}
+
+/* origin */
+.origin{margin-top:3.5rem}
+.olabel{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent3);font-weight:700;margin-bottom:1.5rem}
+.otl{position:relative;padding-left:2rem;border-left:2px solid;border-image:linear-gradient(var(--accent),var(--accent3)) 1}
+.oc{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.3rem;transition:.25s}
+.oc::before{content:'';position:absolute;left:-2.55rem;top:1.7rem;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:var(--glow);border:3px solid var(--bg)}
+.oc:hover{border-color:rgba(233,69,96,.35);transform:translateX(4px)}
+.oy{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--accent);margin-bottom:.3rem}
+.oc h3{font-weight:900;font-size:1.05rem;margin-bottom:.4rem}
+.oc p{color:var(--muted);font-size:.88rem;line-height:1.75;margin-bottom:.7rem}.oc strong{color:var(--text)}
+.badge{display:inline-block;background:rgba(233,69,96,.1);color:var(--accent);font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 12px;border-radius:10px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem}
+.sg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.5rem;transition:.25s}
+.sg:hover{border-color:rgba(233,69,96,.3);transform:translateY(-4px)}
+.sgt{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.bar{margin-bottom:.8rem}
+.bar div:first-child{display:flex;justify-content:space-between;font-size:.82rem;font-weight:700;margin-bottom:.3rem}
+.bar i{font-style:normal;color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:.72rem}
+.track{height:6px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
+.fill{height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent3));transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.fill.mid{background:linear-gradient(90deg,var(--accent2),var(--accent))}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font-size:.8rem;font-weight:600;padding:4px 12px;border-radius:20px;transition:.2s}
+.tag:hover{background:var(--accent);border-color:var(--accent)}
+
+/* projects */
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.f{background:transparent;color:var(--muted);border:1px solid var(--line);padding:.4rem 1.1rem;border-radius:20px;font-weight:700;font-size:.78rem;cursor:pointer;font-family:inherit;transition:.2s}
+.f.on,.f:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:.3s;transform-style:preserve-3d}
+.pc:hover{border-color:rgba(233,69,96,.4);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.pc.hide{display:none}
+.thumb{height:150px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.thumb span{font-size:3.4rem;z-index:1;transition:.3s}
+.pc:hover .thumb span{transform:scale(1.2) rotate(-6deg)}
+.t1{background:linear-gradient(135deg,#2a1230,#e9456033)}.t2{background:linear-gradient(135deg,#14143a,#7c3aed44)}.t3{background:linear-gradient(135deg,#2a1d0a,#f5a62340)}.t4{background:linear-gradient(135deg,#0a2a22,#22c55e30)}.t5{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+.pb{padding:1.4rem;flex:1;display:flex;flex-direction:column}
+.pt{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.7rem}
+.ptag{font-size:.66rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:8px;background:rgba(233,69,96,.12);color:var(--accent)}
+.ptag.new{background:rgba(34,197,94,.12);color:#22c55e}
+.pb h3{font-weight:900;font-size:1.1rem;margin-bottom:.5rem}
+.pb p{color:var(--muted);font-size:.87rem;line-height:1.65;flex:1;margin-bottom:1rem}
+.feat{list-style:none;margin-bottom:1.2rem;display:flex;flex-direction:column;gap:.3rem}
+.feat li{font-size:.8rem;color:var(--text)}.feat li::before{content:'▸ ';color:var(--accent)}
+.pl{display:flex;gap:.7rem}
+.plink{text-decoration:none;font-size:.78rem;font-weight:700;padding:.45rem 1rem;border-radius:20px;transition:.2s}
+.plink.p{background:var(--accent);color:#fff}.plink.p:hover{box-shadow:var(--glow)}
+.plink.g{border:1px solid rgba(255,255,255,.12);color:var(--muted)}.plink.g:hover{border-color:var(--accent);color:var(--accent)}
+
+/* terminal */
+.tw{max-width:880px;margin:0 auto;border-radius:14px;overflow:hidden;background:#05050a;border:1px solid rgba(233,69,96,.35);box-shadow:var(--glow),0 20px 60px rgba(0,0,0,.6)}
+.tb{display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;background:#16161f;border-bottom:1px solid rgba(233,69,96,.2)}
+.td{width:11px;height:11px;border-radius:50%}.td.r{background:#ff5f56}.td.y{background:#ffbd2e}.td.g{background:#27c93f}
+.tt{flex:1;text-align:center;font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--muted)}
+.tbody{position:relative;height:400px;padding:1.1rem 1.3rem;overflow-y:auto;font-family:'Share Tech Mono',monospace;font-size:.85rem;line-height:1.7;color:#c9f7d4}
+.tl{white-space:pre-wrap;word-break:break-word}
+.pr{color:var(--accent);font-weight:700}.pa{color:var(--accent3)}.mu{color:var(--muted)}.er{color:#ff5f56}.ac{color:var(--accent2)}
+.gl{display:inline-block;animation:tg .4s steps(2,end)}
+@keyframes tg{0%{filter:brightness(3) hue-rotate(40deg);transform:translateX(-2px)}50%{filter:brightness(.5);transform:translateX(2px)}100%{filter:none}}
+.tin{display:flex;align-items:center;gap:.5rem;border-top:1px solid rgba(233,69,96,.15);padding:.75rem 1.3rem;font-family:'Share Tech Mono',monospace;font-size:.85rem}
+#tin{flex:1;background:transparent;border:none;outline:none;color:#c9f7d4;font:inherit;caret-color:var(--accent)}
+.hint{text-align:center;margin-top:1rem;font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--muted)}.hint span{color:var(--accent)}
+
+/* edu + contact */
+.edu{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.7rem;display:grid;grid-template-columns:auto 1fr;gap:1.2rem;margin-bottom:1.2rem;transition:.2s}
+.edu:hover{border-color:rgba(233,69,96,.25)}
+.ei{width:48px;height:48px;border-radius:12px;background:rgba(233,69,96,.12);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.edu h3{font-weight:900;font-size:1rem}.edu p{color:var(--muted);font-size:.85rem;margin-top:.2rem}
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem}
+@media(max-width:760px){.contact{grid-template-columns:1fr}}
+.contact h3{font-family:'Bangers',cursive;font-size:2rem;letter-spacing:2px;margin-bottom:1rem}
+.contact>div>p{color:var(--muted);line-height:1.7;margin-bottom:1.6rem;font-size:.92rem}
+.cl{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.75rem 1.2rem;text-decoration:none;color:var(--text);margin-bottom:.7rem;transition:.2s;font-size:.88rem}
+.cl:hover{border-color:var(--accent);transform:translateX(4px)}
+.cl small{display:block;color:var(--muted);font-size:.8rem}
+.form{display:flex;flex-direction:column;gap:.8rem}
+.form input,.form textarea{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.8rem 1rem;color:var(--text);font-family:inherit;font-size:.9rem;outline:none;transition:.2s;width:100%}
+.form input:focus,.form textarea:focus{border-color:var(--accent)}
+.form textarea{min-height:110px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:500px){.row{grid-template-columns:1fr}}
+#fm{font-size:.83rem;font-weight:700;min-height:1.2rem}
+footer{text-align:center;padding:2.5rem;border-top:1px solid rgba(255,255,255,.05);color:var(--muted);font-size:.8rem}footer span{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* ── WELCOME GATE ── */
+body.locked{overflow:hidden}
+#gate{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity .7s ease,visibility .7s}
+#gate.leave{opacity:0;visibility:hidden}
+#gparticles{position:absolute;inset:0;width:100%;height:100%}
+.gbox{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;padding:0 1.5rem;text-align:center}
+#gate .gimg{width:240px;height:240px;border-radius:50%;object-fit:cover;margin-bottom:30px;border:4px solid transparent;background:linear-gradient(var(--bg),var(--bg)) padding-box,linear-gradient(135deg,var(--accent),var(--accent3)) border-box;box-shadow:var(--glow),0 0 20px rgba(124,58,237,.4);animation:gfloat 3s ease-in-out infinite}
+@keyframes gfloat{50%{transform:translateY(-15px)}}
+#gname{font-family:'Bangers',cursive;font-size:72px;letter-spacing:4px;color:var(--accent);min-height:80px;text-shadow:0 0 10px rgba(233,69,96,.6),0 0 25px rgba(233,69,96,.4),0 0 45px rgba(124,58,237,.35)}
+.galias{margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:.95rem;color:var(--accent3);opacity:0;animation:gappear .8s 2.8s forwards}
+.galias span{color:var(--muted)}
+.gsub{margin-top:14px;font-size:20px;font-weight:600;color:var(--muted);opacity:0;animation:gappear .8s 3.1s forwards}
+@keyframes gappear{to{opacity:1}}
+#genter{margin-top:38px;padding:.85rem 2.4rem;font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:900;letter-spacing:1px;color:#fff;background:var(--accent);border:none;border-radius:30px;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(10px);transition:transform .2s,box-shadow .2s,opacity .6s;box-shadow:var(--glow)}
+#genter.show{opacity:1;pointer-events:auto;transform:none}
+#genter:hover{transform:translateY(-3px);box-shadow:0 0 32px rgba(233,69,96,.7)}
+@media(max-width:600px){#gname{font-size:46px;min-height:52px}#gate .gimg{width:180px;height:180px}.gsub{font-size:16px}}
+</style>
+</head>
+<body class="locked">
+<div id="gate">
+  <canvas id="gparticles"></canvas>
+  <div class="gbox">
+    <img class="gimg" src="Daentz.png" alt="Dan Moses">
+    <h1 id="gname" aria-label="Dan Moses"></h1>
+    <p class="galias"><span>alias</span> // Daentz Decracker</p>
+    <p class="gsub">Computer Science Student | Web Developer</p>
+    <button id="genter">Enter Site ⚡</button>
+  </div>
+</div>
+
+<div id="progress"></div><div id="cursor-glow"></div>
+
+<nav>
+  <a href="#hero" class="brand">DAENTZ⚡</a>
+  <a href="#about" class="nl">About</a><a href="#skills" class="nl">Skills</a><a href="#projects" class="nl">Projects</a><a href="#terminal" class="nl">Terminal</a><a href="#education" class="nl">Education</a><a href="#contact" class="nl">Contact</a>
+</nav>
+
+<section id="hero" class="hero">
+  <canvas id="particles"></canvas>
+  <div class="hero-text">
+    <div class="eyebrow"><span class="dot"></span>Open to collaboration</div>
+    <h1>Dan<br><span class="r">Moses</span></h1>
+    <div class="role">alias // Daentz Decracker<br><b id="typed"></b><span class="caret"></span></div>
+    <p class="hero-desc"><strong>Computer Science student</strong> at Maasai Mara University. I design and build web apps that look sharp and solve real problems, from a supermarket till to finding the nearest hospital.</p>
+    <div class="hero-btns"><a href="#projects" class="btn">View my work ⚡</a><a href="#contact" class="btn ghost">Get in touch</a></div>
+    <div class="chips"><span class="chip">4 projects</span><span class="chip">Kenya 🇰🇪</span><span class="chip">Full-stack in progress</span></div>
+  </div>
+  <div class="hero-visual">
+    <div class="avatar-wrap">
+      <div class="avatar-frame"></div>
+      <div class="avatar-inner">👨🏾‍💻<img src="Dan.PNG" alt="Dan Moses" onerror="this.style.display='none'"></div>
+      <div class="fb b1">⚡ Frontend Pro</div><div class="fb b2">🎓 CS Student</div><div class="fb b3">🔧 Backend Learner</div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="alt"><div class="sec reveal">
+  <div class="label">Get to know me</div><h2>About <span>Me</span></h2><div class="divider"></div>
+  <div class="about">
+    <div class="slides">
+      <div class="slide active" style="background-image:url('Daentz.png')"></div>
+      <div class="slide" style="background-image:url('DAENTZ (2).png')"></div>
+      <div class="slide" style="background-image:url('Dan.png')"></div>
+      <div class="slide" style="background-image:url('MK.png')"></div>
+      <div class="scan"></div>
+      <div class="sdots"><span class="sd active"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+    </div>
+    <div>
+      <p>I'm <strong>Dan Moses</strong>, known online as <strong>Daentz Decracker</strong>, a Computer Science student at Maasai Mara University, Kenya. I build for the web because I like watching an idea turn into something people can click around in.</p>
+      <p>My strength is the <strong>frontend</strong>: clean layouts, smooth interactions, interfaces that feel alive. Now I'm pushing into the <strong>backend</strong> with Node.js, Express and MongoDB to build complete systems.</p>
+      <p>I'm drawn to anime-inspired design. The bold colors, energy and glitch you see across this site come from that.</p>
+      <div class="stats">
+        <div class="stat"><b data-n="4">0</b><span>Projects</span></div>
+        <div class="stat"><b data-n="3">0</b><span>Languages</span></div>
+        <div class="stat"><b data-n="386">0</b><span>KCPE marks</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="origin">
+    <div class="olabel">The origin story</div>
+    <div class="otl">
+      <div class="oc"><div class="oy">2020 · KCPE</div><h3>🌱 Adurukoit Primary School</h3><p>A quiet primary school where the only "tech" was a dusty desktop in the staff room, and where the curiosity took root. Eight years of discipline ended with <strong>386 marks</strong> at KCPE.</p><span class="badge">386 marks</span></div>
+      <div class="oc"><div class="oy">2021 – 2024 · KCSE</div><h3>⚔️ Kakamega High School</h3><p>One of the country's powerhouse schools: sharp minds, real competition. I learned to balance the books and the grind, and walked out with a <strong>B+</strong>.</p><span class="badge">B+</span></div>
+      <div class="oc"><div class="oy">2025 – present</div><h3>💻 Maasai Mara University</h3><p>Computer Science by day, self-taught builder by night. Stacking frontend skills, moving into backend, and shipping real projects like the ones below.</p><span class="badge" style="background:rgba(124,58,237,.12);color:var(--accent3)">In progress</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="skills"><div class="sec reveal">
+  <div class="label">What I know</div><h2>My <span>Skills</span></h2><div class="divider"></div>
+  <div class="skills">
+    <div class="sg"><div class="sgt">🎨 Frontend</div>
+      <div class="bar"><div>HTML5 &amp; CSS3<i>90%</i></div><div class="track"><div class="fill" data-w="90"></div></div></div>
+      <div class="bar"><div>JavaScript<i>85%</i></div><div class="track"><div class="fill" data-w="85"></div></div></div>
+      <div class="bar"><div>UI/UX &amp; Animation<i>85%</i></div><div class="track"><div class="fill" data-w="85"></div></div></div></div>
+    <div class="sg"><div class="sgt">🔧 Backend (learning)</div>
+      <div class="bar"><div>Node.js &amp; Express<i>55%</i></div><div class="track"><div class="fill mid" data-w="55"></div></div></div>
+      <div class="bar"><div>MongoDB / MySQL<i>50%</i></div><div class="track"><div class="fill mid" data-w="50"></div></div></div>
+      <div class="bar"><div>REST APIs<i>55%</i></div><div class="track"><div class="fill mid" data-w="55"></div></div></div></div>
+    <div class="sg"><div class="sgt">💻 Languages</div><div class="tags"><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">C basics</span><span class="tag">SQL</span></div></div>
+    <div class="sg"><div class="sgt">🛠 Tools &amp; theory</div><div class="tags"><span class="tag">VS Code</span><span class="tag">Git &amp; GitHub</span><span class="tag">XAMPP</span><span class="tag">Linux basics</span><span class="tag">Boolean algebra</span><span class="tag">Discrete maths</span><span class="tag">Digital electronics</span></div></div>
+  </div>
+</div></section>
+
+<section id="projects" class="alt"><div class="sec reveal">
+  <div class="label">What I've built</div><h2>My <span>Projects</span></h2><div class="divider"></div>
+  <div class="filters"><button class="f on" data-f="all">All</button><button class="f" data-f="web">Web apps</button><button class="f" data-f="biz">Business</button><button class="f" data-f="health">Health</button></div>
+  <div class="projects">
+
+    <div class="pc" data-c="biz"><div class="thumb t1"><span>🛒</span></div><div class="pb">
+      <div class="pt"><span class="ptag new">New</span><span class="ptag">POS</span><span class="ptag">JavaScript</span></div>
+      <h3>DUKAOS</h3>
+      <p>A full point-of-sale terminal built for a minisupermarket, styled in the same dark anime look as this site.</p>
+      <ul class="feat"><li>Priced in KSh with 16% VAT</li><li>M-Pesa payment support</li><li>Fast checkout flow for the till</li></ul>
+      <div class="pl"><a href="#" class="plink p">🔗 View project</a><a href="https://github.com/Daentz" target="_blank" class="plink g">GitHub</a></div></div></div>
+
+    <div class="pc" data-c="web"><div class="thumb t2"><span>🎓</span></div><div class="pb">
+      <div class="pt"><span class="ptag new">New</span><span class="ptag">React</span><span class="ptag">TypeScript</span><span class="ptag">Express</span></div>
+      <h3>Student Dashboard</h3>
+      <p>A personal dashboard where each student sees their study plans, subjects and progress in one place.</p>
+      <ul class="feat"><li>Study plans by subject, date and duration</li><li>Mark sessions done and track progress</li><li>Student profiles with themes</li></ul>
+      <div class="pl"><a href="home.html" class="plink p">🔗 View project</a><a href="https://github.com/Daentz" target="_blank" class="plink g">GitHub</a></div></div></div>
+
+    <div class="pc" data-c="health"><div class="thumb t4"><span>🏥</span></div><div class="pb">
+      <div class="pt"><span class="ptag new">New</span><span class="ptag">Maps</span><span class="ptag">JavaScript</span></div>
+      <h3>Hospital Locator</h3>
+      <p>Helps people find nearby hospitals quickly, so help is easier to reach when it matters most.</p>
+      <ul class="feat"><li>Find hospitals close to you</li><li>Clear, mobile-friendly results</li><li>Built for fast use in an emergency</li></ul>
+      <div class="pl"><a href="#" class="plink p">🔗 View project</a><a href="https://github.com/Daentz" target="_blank" class="plink g">GitHub</a></div></div></div>
+
+    <div class="pc" data-c="web"><div class="thumb t3"><span>📚</span></div><div class="pb">
+      <div class="pt"><span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span><span class="ptag">MySQL</span></div>
+      <h3>Study Planner</h3>
+      <p>A study planning site with a welcome page, dashboard and planner, backed by a MySQL database.</p>
+      <ul class="feat"><li>Weekly timetable and subject tracker</li><li>Progress board</li><li>Database-backed plans</li></ul>
+      <div class="pl"><a href="#" class="plink p">🔗 View project</a><a href="https://github.com/Daentz" target="_blank" class="plink g">GitHub</a></div></div></div>
+
+  </div>
+</div></section>
+
+<section id="terminal"><div class="sec reveal">
+  <div class="label">Interact with me</div><h2>The <span>Terminal</span></h2><div class="divider"></div>
+  <div class="tw">
+    <div class="tb"><span class="td r"></span><span class="td y"></span><span class="td g"></span><span class="tt">daentz@portfolio: ~</span></div>
+    <div class="tbody" id="tbody"><div id="log"></div></div>
+    <div class="tin"><span class="pr">daentz@portfolio</span><span class="mu">:</span><span class="pa">~$</span><input id="tin" autocomplete="off" spellcheck="false" disabled></div>
+  </div>
+  <div class="hint">Type <span>help</span> to see what this thing can do</div>
+</div></section>
+
+<section id="education" class="alt"><div class="sec reveal">
+  <div class="label">My background</div><h2>Edu<span>cation</span></h2><div class="divider"></div>
+  <div class="edu"><div class="ei">🎓</div><div><div class="oy">2024 – present</div><h3>BSc Computer Science</h3><p>Maasai Mara University, Kenya. Algorithms, discrete maths, digital electronics, software development and databases.</p></div></div>
+  <div class="edu"><div class="ei">💻</div><div><div class="oy">Self-taught</div><h3>Web Development</h3><p>HTML, CSS, JavaScript, Node.js. Real projects built from scratch, including this portfolio.</p></div></div>
+</div></section>
+
+<section id="contact"><div class="sec reveal">
+  <div class="label">Get in touch</div><h2>Contact <span>Me</span></h2><div class="divider"></div>
+  <div class="contact">
+    <div><h3>Let's build<br>something 🔥</h3><p>A project, a collaboration or just a conversation. I'm open to all three.</p>
+      <a href="mailto:danmoses2541@gmail.com" class="cl"><span>📧</span><div>Email<small>danmoses2541@gmail.com</small></div></a>
+      <a href="https://instagram.com/DaentzDecracker" target="_blank" class="cl"><span>📸</span><div>Instagram<small>@DaentzDecracker</small></div></a>
+      <a href="https://github.com/Daentz" target="_blank" class="cl"><span>🐙</span><div>GitHub<small>Daentz</small></div></a>
+      <a href="tel:+254708850088" class="cl"><span>📱</span><div>Phone / WhatsApp<small>+254 708 850 088</small></div></a></div>
+    <div class="form">
+      <div class="row"><input id="cn" placeholder="Your name" aria-label="Your name"><input id="ce" type="email" placeholder="Your email" aria-label="Your email"></div>
+      <input id="cs" placeholder="Subject" aria-label="Subject">
+      <textarea id="cm" placeholder="Your message..." aria-label="Message"></textarea>
+      <button class="btn" id="send" style="justify-content:center">Send message ✉️</button>
+      <p id="fm"></p>
+    </div>
+  </div>
+</div></section>
+
+<footer><p>© 2026 <span>Dan Moses</span> aka <span>Daentz Decracker</span>. Built with 🔥 from Maasai Mara University</p></footer>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+// scroll progress, nav highlight, cursor glow
+addEventListener('scroll',()=>{const h=document.documentElement;$('#progress').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
+addEventListener('pointermove',e=>{const g=$('#cursor-glow');g.style.left=e.clientX+'px';g.style.top=e.clientY+'px'});
+const navObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('nav .nl').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{threshold:.45});
+$$('section[id]').forEach(s=>navObs.observe(s));
+
+// reveal + skill bars + counters
+const obs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add('visible');
+  e.target.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%');
+  e.target.querySelectorAll('[data-n]').forEach(c=>{const n=+c.dataset.n;let v=0;const t=setInterval(()=>{v=Math.min(n,v+Math.ceil(n/40));c.textContent=v;if(v>=n)clearInterval(t)},30)});
+  obs.unobserve(e.target);
+}),{threshold:.1});
+$$('.reveal').forEach(el=>obs.observe(el));
+
+// typed roles
+(function(){const roles=['Computer Science student','Frontend developer','Backend learner','Anime-inspired designer'];let r=0,c=0,del=false;const el=$('#typed');
+function tick(){const w=roles[r];el.textContent=w.slice(0,c);if(!del&&c<w.length){c++;setTimeout(tick,70)}else if(!del){del=true;setTimeout(tick,1400)}else if(c>0){c--;setTimeout(tick,35)}else{del=false;r=(r+1)%roles.length;setTimeout(tick,300)}}tick()})();
+
+// particles
+(function(){const cv=$('#particles'),x=cv.getContext('2d');let W,H;const cols=['#e94560','#7c3aed','#f5a623'];
+function rs(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight}rs();addEventListener('resize',rs);
+const P=Array.from({length:55},()=>({x:Math.random()*W,y:Math.random()*H,s:Math.random()*2.2+.8,vx:Math.random()-.5,vy:Math.random()-.5,c:cols[Math.random()*3|0]}));
+(function a(){x.clearRect(0,0,W,H);P.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;x.fillStyle=p.c;x.beginPath();x.arc(p.x,p.y,p.s,0,7);x.fill();
+for(let j=i+1;j<P.length;j++){const q=P[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<110){x.strokeStyle='rgba(233,69,96,'+(.15*(1-d/110))+')';x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}});requestAnimationFrame(a)})()})();
+
+// slideshow
+(function(){const s=$$('.slide'),d=$$('.sd');let c=0;setInterval(()=>{const n=(c+1)%s.length,p=c;s[p].classList.remove('active');s[p].classList.add('leaving');
+setTimeout(()=>{s[p].classList.remove('leaving');s[n].classList.add('active');d[p].classList.remove('active');d[n].classList.add('active');c=n},320)},3500)})();
+
+// project filters
+$$('.f').forEach(b=>b.onclick=()=>{$$('.f').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+$$('.pc').forEach(p=>p.classList.toggle('hide',b.dataset.f!=='all'&&p.dataset.c!==b.dataset.f))});
+
+// card tilt
+$$('.pc').forEach(c=>{c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(800px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-6px)`});c.addEventListener('pointerleave',()=>c.style.transform='')});
+
+// contact form (opens the visitor's mail app with the message filled in)
+$('#send').onclick=()=>{const n=$('#cn').value.trim(),e=$('#ce').value.trim(),s=$('#cs').value.trim(),m=$('#cm').value.trim(),o=$('#fm');
+if(!n||!e||!m){o.style.color='#e94560';o.textContent='⚠️ Please fill in name, email and message.';return}
+o.style.color='#22c55e';o.textContent='✅ Opening your email app to send this...';
+location.href='mailto:danmoses2541@gmail.com?subject='+encodeURIComponent(s||'Portfolio message from '+n)+'&body='+encodeURIComponent(m+'\n\n— '+n+' ('+e+')')};
+
+// terminal
+(function(){const body=$('#tbody'),log=$('#log'),inp=$('#tin');const ids=['hero','about','skills','projects','terminal','education','contact'];let H=[],hi=0;
+const pl=(h,c)=>{const d=document.createElement('div');d.className='tl '+(c||'');d.innerHTML=h;log.appendChild(d);body.scrollTop=body.scrollHeight};
+const cmds={
+help(){pl('<span class="ac">Commands:</span>');[['whoami','who you\'re talking to'],['about','quick bio'],['skills','what I build with'],['projects','things I\'ve shipped'],['education','the arcs that got me here'],['contact','how to reach me'],['goto [section]','jump to a section'],['theme','color chaos'],['matrix','you know what this does'],['clear','wipe the terminal']].forEach(([a,b])=>pl(`  <span class="ac">${a.padEnd(16)}</span><span class="mu">${b}</span>`))},
+whoami(){pl('daentz_decracker <span class="mu">// real name: Dan Moses</span>');pl('<span class="mu">CS student, frontend dev, backend trainee</span>')},
+about(){pl('Dan Moses: frontend mastery heading into full-stack.');pl('<span class="mu">KCPE 386 → Kakamega High (B+) → Maasai Mara University</span>')},
+skills(){pl('<span class="ac">Frontend:</span> HTML5, CSS3, JavaScript, UI/UX, Animations');pl('<span class="ac">Backend (learning):</span> Node.js, Express, MongoDB, MySQL')},
+projects(){pl('<span class="ac">[1]</span> DUKAOS: supermarket POS (KSh, VAT, M-Pesa)');pl('<span class="ac">[2]</span> Student Dashboard: study plans and progress');pl('<span class="ac">[3]</span> Hospital Locator: find nearby hospitals');pl('<span class="ac">[4]</span> Study Planner: timetable and tracker')},
+education(){pl('<span class="ac">Arc 01</span> Adurukoit Primary, KCPE 386');pl('<span class="ac">Arc 02</span> Kakamega High, KCSE B+');pl('<span class="ac">Arc 03</span> Maasai Mara University, BSc CS')},
+contact(){pl('email   <span class="mu">danmoses2541@gmail.com</span>');pl('github  <span class="mu">github.com/Daentz</span>');pl('ig      <span class="mu">@DaentzDecracker</span>')},
+goto(a){const t=(a[0]||'').toLowerCase();if(!t)return pl('usage: goto [section]','er');const m=ids.find(i=>i.startsWith(t));if(!m)return pl('no section "'+t+'". try: '+ids.join(', '),'er');pl('<span class="mu">navigating to</span> #'+m+' ...');setTimeout(()=>document.getElementById(m).scrollIntoView({behavior:'smooth'}),250)},
+clear(){log.innerHTML=''},
+theme(){document.documentElement.style.setProperty('--accent','#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0'));pl('<span class="gl ac">theme shifted. refresh to restore.</span>')},
+sudo(){pl('Nice try. This terminal runs on vibes, not root.','er')},
+matrix(){pl('<span class="ac">wake up, Dan...</span>');let n=0;const ch='アイウエオカキクケコ0123456789',t=setInterval(()=>{let r='';for(let i=0;i<48;i++)r+=ch[Math.random()*ch.length|0];pl(r,'mu');if(++n>=6){clearInterval(t);pl('<span class="ac">...the terminal has you.</span>')}},80)}};
+const alias={ls:'projects',cd:'goto',cat:'about'};
+function run(raw){const t=raw.trim();if(!t)return;pl(`<span class="pr">daentz@portfolio</span><span class="mu">:</span><span class="pa">~$</span> ${t.replace(/</g,'&lt;')}`);const p=t.split(/\s+/);let c=p[0].toLowerCase();c=alias[c]||c;cmds[c]?cmds[c](p.slice(1)):pl(`command not found: ${c.replace(/</g,'&lt;')}. type <span class="ac">help</span>`,'er')}
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'){if(inp.value.trim()){H.push(inp.value);hi=H.length}run(inp.value);inp.value=''}else if(e.key==='ArrowUp'){e.preventDefault();if(hi>0)inp.value=H[--hi]||''}else if(e.key==='ArrowDown'){e.preventDefault();inp.value=hi<H.length-1?H[++hi]:(hi=H.length,'')}});
+const boot=['INITIALIZING DAENTZ_OS v3.0 ...','[OK] frontend.sys mounted','[OK] backend.sys mounted (learning_mode = true)','[OK] anime_aesthetic.dll loaded','Authenticating: Dan Moses aka Daentz Decracker','[ACCESS GRANTED]','','Welcome. Type help to get started.'];
+let started=false;new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting&&!started){started=true;let i=0;(function n(){if(i>=boot.length){inp.disabled=false;return}pl(boot[i]==='[ACCESS GRANTED]'?'<span class="gl ac">[ACCESS GRANTED]</span>':boot[i]);i++;setTimeout(n,170)})()}}),{threshold:.3}).observe($('#terminal'));
+body.addEventListener('click',()=>inp.focus());
+})();
+
+// ── WELCOME GATE ──
+(function(){
+  const gate=document.getElementById('gate'),btn=document.getElementById('genter'),nameEl=document.getElementById('gname');
+  const text='DAN MOSES';let i=0;
+  (function type(){if(i<text.length){nameEl.textContent+=text[i++];setTimeout(type,150)}else setTimeout(()=>btn.classList.add('show'),1300)})();
+  let open=false;
+  function enter(){if(open)return;open=true;gate.classList.add('leave');document.body.classList.remove('locked');window.scrollTo(0,0);setTimeout(()=>gate.remove(),800)}
+  btn.addEventListener('click',enter);
+  const cv=document.getElementById('gparticles'),c=cv.getContext('2d'),cols=['#e94560','#7c3aed','#f5a623'];
+  function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+  const P=Array.from({length:90},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,s:Math.random()*3+1,vx:Math.random()*2-1,vy:Math.random()*2-1,c:cols[Math.random()*3|0]}));
+  (function a(){if(!document.body.contains(gate))return;c.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;c.fillStyle=p.c;c.beginPath();c.arc(p.x,p.y,p.s,0,7);c.fill()});requestAnimationFrame(a)})();
+})();
+</script>
+</body>
+</html>
